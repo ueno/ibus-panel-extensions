@@ -1,0 +1,14 @@
+src/charmap-panel.vala
+src/client.vala
+src/engine-main.vala
+src/engine.vala
+src/key-capture-dialog.vala
+src/search-panel.vala
+src/selectable.vala
+src/service-gtk-main.vala
+src/service-gtk.vala
+src/service.vala
+src/setup-main.vala
+src/setup.vala
+src/window-placement.vala
+[type: gettext/glade]src/ibus-charmap-preferences.ui

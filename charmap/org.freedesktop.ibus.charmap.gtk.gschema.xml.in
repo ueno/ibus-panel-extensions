@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<schemalist>
+  <schema id="org.freedesktop.ibus.charmap.gtk"
+	  path="/org/freedesktop/ibus/charmap/">
+    <key name="use-system-font" type="b">
+      <default>true</default>
+      <summary>Use system font to draw characters in the charmap</summary>
+      <description>If true, use system font to draw characters in the
+      charmap.</description>
+    </key>
+    <key name="font" type="s">
+      <default>'Sans 12'</default>
+      <summary>The default font used to draw characters in the charmap</summary>
+      <description>The default font used to draw characters in the
+      charmap, if "use-system-font" is false.</description>
+    </key>
+  </schema>
+</schemalist>

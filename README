@@ -1,0 +1,36 @@
+Additional UI components for IBus
+
+NOTE: WIP
+
+* What's this
+
+This package contains the following components:
+
+- charmap: character map
+- virtkbd: virtual keyboard
+- drawing: drawing pad for hand-writing etc
+
+Each component consists of a D-Bus service running on IBus bus (which
+provides actual UI), a client library to access the service, and an
+example IME using the service through the library.
+
+* Install
+
+You will need:
+
+- IBus (pkgconfig: ibus-1.0 >= 1.4.0)
+- Vala 0.12
+
+for charmap:
+- Gucharmap 3.0.* (pkgconfig: gucharmap-2.90 >= 3.0.1)
+
+for virtkbd:
+- eekboard 1.0.* (pkgconfig: eek-gtk-0.90)
+
+for drawing:
+- GTK+ 3.* (pkgconfig: gtk+-3.0)
+
+ $ sudo yum install vala ibus-devel gucharmap-devel eekboard-devel ...
+ $ ./autogen.sh --prefix=/usr # --libdir=/usr/lib64
+ $ make
+ $ sudo make install

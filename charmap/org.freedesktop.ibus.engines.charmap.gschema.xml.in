@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<schemalist>
+  <schema id="org.freedesktop.ibus.engines.charmap"
+	  path="/desktop/ibus/engines/charmap/">
+    <key name="max-matches" type="u">
+      <default>100</default>
+      <summary>The maximum number of hits when searching</summary>
+      <description>Only lists matches below this value when
+      searching.</description>
+    </key>
+    <key name="select-chapter-shortcut" type="s">
+      <default>'Alt+Down'</default>
+      <summary>Keyboard shortcut to drop down chapters menu</summary>
+      <description></description>
+    </key>
+    <key name="commit-character-shortcut" type="s">
+      <default>'Return'</default>
+      <summary>Keyboard shortcut to commit character</summary>
+      <description></description>
+    </key>
+  </schema>
+</schemalist>
