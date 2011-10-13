@@ -13,6 +13,11 @@
   </bookinfo>
 
   <chapter>
+    <title>Base classes and types</title>
+    <xi:include href="xml/ibuspanelextensions.xml"/>
+
+  </chapter>
+  <chapter>
     <title>Components</title>
     <xi:include href="xml/ibuscharmap.xml"/>
     <xi:include href="xml/ibusvirtkbd.xml"/>

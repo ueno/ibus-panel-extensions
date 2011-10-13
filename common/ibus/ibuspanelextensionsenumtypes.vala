@@ -17,7 +17,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 // 02110-1301, USA.
 
-[CCode(cheader_filename="ibus/ibuspanelextensionsenumtypes.h")]
+[CCode(cheader_filename="ibus/ibuspanelextensions.h")]
 namespace IBus {
     /**
      * IBusMovementStep:

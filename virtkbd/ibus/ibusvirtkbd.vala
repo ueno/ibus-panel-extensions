@@ -33,14 +33,7 @@ namespace IBus {
      *
      * The #IBusVirtkbd class is a proxy to access the virtual keyboard service.
      */
-    public class Virtkbd : Object {
-        /**
-         * IBusVirtkbd:visible:
-         *
-         * Whether the charmap window is visible.
-         */
-        public bool visible { get; private set; }
-
+    public class Virtkbd : IBus.PanelExtension {
         /**
          * IBusVirtkbd:keyboard-type:
          *
@@ -74,13 +67,7 @@ namespace IBus {
             hide ();
         }
 
-        /**
-         * ibus_virtkbd_show:
-         * @self: an #IBusVirtkbd
-         *
-         * Show a virtual keyboard.
-         */
-        public void show () {
+        public override void show () {
             try {
                 proxy.show ();
             } catch (IOError e) {
@@ -88,13 +75,7 @@ namespace IBus {
             }
         }
 
-        /**
-         * ibus_virtkbd_hide:
-         * @self: an #IBusVirtkbd
-         *
-         * Hide a virtual keyboard.
-         */
-        public void hide () {
+        public override void hide () {
             try {
                 proxy.hide ();
             } catch (IOError e) {
@@ -102,18 +83,7 @@ namespace IBus {
             }
         }
 
-        /**
-         * ibus_virtkbd_set_cursor_location:
-         * @self: an #IBusVirtkbd
-         * @x: X coordinate of the cursor
-         * @y: Y coordinate of the cursor
-         * @w: width of the cursor
-         * @h: height of the cursor
-         *
-         * Tell the cursor location of the IBus input context to the
-         * virtkbd service.
-         */
-        public void set_cursor_location (int x, int y, int w, int h) {
+        public override void set_cursor_location (int x, int y, int w, int h) {
             try {
                 proxy.set_cursor_location (x, y, w, h);
             } catch (IOError e) {

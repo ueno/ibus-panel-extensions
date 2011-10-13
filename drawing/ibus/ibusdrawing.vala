@@ -34,7 +34,7 @@ namespace IBus {
      *
      * The #IBusDrawing class is a proxy to access the handwriting pad service.
      */
-    public class Drawing : Object {
+    public class Drawing : IBus.PanelExtension {
         /**
          * IBusDrawing:visible:
          *
@@ -65,13 +65,7 @@ namespace IBus {
             hide ();
         }
 
-        /**
-         * ibus_drawing_show:
-         * @self: an #IBusDrawing
-         *
-         * Show a character map.
-         */
-        public void show () {
+        public override void show () {
             try {
                 proxy.show ();
             } catch (IOError e) {
@@ -79,13 +73,7 @@ namespace IBus {
             }
         }
 
-        /**
-         * ibus_drawing_hide:
-         * @self: an #IBusDrawing
-         *
-         * Hide a character map.
-         */
-        public void hide () {
+        public override void hide () {
             try {
                 proxy.hide ();
             } catch (IOError e) {
@@ -93,18 +81,7 @@ namespace IBus {
             }
         }
 
-        /**
-         * ibus_drawing_set_cursor_location:
-         * @self: an #IBusDrawing
-         * @x: X coordinate of the cursor
-         * @y: Y coordinate of the cursor
-         * @w: width of the cursor
-         * @h: height of the cursor
-         *
-         * Tell the cursor location of the IBus input context to the
-         * drawing service.
-         */
-        public void set_cursor_location (int x, int y, int w, int h) {
+        public override void set_cursor_location (int x, int y, int w, int h) {
             try {
                 proxy.set_cursor_location (x, y, w, h);
             } catch (IOError e) {

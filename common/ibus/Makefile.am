@@ -1,7 +1,7 @@
 lib_LTLIBRARIES = libibuspanelextensions.la
 
 libibuspanelextensions_la_VALAFLAGS = \
-	-H ibuspanelextensionsenumtypes.h --vapi ibus-panel-extensions.vapi \
+	-H ibuspanelextensions.h --vapi ibus-panel-extensions.vapi \
 	--vapidir=$(top_srcdir)/vapi \
 	--pkg gobject-2.0 \
 	--library ibus-panel-extensions \
@@ -16,11 +16,11 @@ libibuspanelextensionsincludedir = \
 	$(includedir)/ibus-panel-extensions/ibus
 
 libibuspanelextensionsinclude_HEADERS = \
-	ibuspanelextensions.h \
-	ibuspanelextensionsenumtypes.h
+	ibuspanelextensions.h
 
 libibuspanelextensions_la_SOURCES = \
-	ibuspanelextensionsenumtypes.vala
+	ibuspanelextensionsenumtypes.vala \
+	ibuspanelextension.vala
 
 vapi_DATA = ibus-panel-extensions.vapi ibus-panel-extensions.deps
 vapidir = $(datadir)/vala/vapi

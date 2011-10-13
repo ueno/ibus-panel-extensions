@@ -2,7 +2,7 @@ include $(top_srcdir)/gtk-doc.make
 
 DOC_MODULE = ibus-panel-extensions
 DOC_MAIN_SGML_FILE = ibus-panel-extensions-docs.xml
-DOC_SOURCE_DIR = $(top_srcdir)/charmap/ibus $(top_srcdir)/virtkbd/ibus $(top_srcdir)/drawing/ibus
+DOC_SOURCE_DIR = $(top_srcdir)/common/ibus $(top_srcdir)/charmap/ibus $(top_srcdir)/virtkbd/ibus $(top_srcdir)/drawing/ibus
 MKDB_OPTIONS = --output-format=xml
 
 INCLUDES = $(LIBIBUSPANELEXTENSIONS_CFLAGS)

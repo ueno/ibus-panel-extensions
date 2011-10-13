@@ -39,14 +39,7 @@ namespace IBus {
      *
      * The #IBusCharmap class is a proxy to access the character map service.
      */
-    public class Charmap : Object {
-        /**
-         * IBusCharmap:visible:
-         *
-         * Whether the charmap window is visible.
-         */
-        public bool visible { get; private set; }
-
+    public class Charmap : IBus.PanelExtension {
         ICharmap proxy;
 
         /**
@@ -73,13 +66,7 @@ namespace IBus {
             hide ();
         }
 
-        /**
-         * ibus_charmap_show:
-         * @self: an #IBusCharmap
-         *
-         * Show a character map.
-         */
-        public void show () {
+        public override void show () {
             try {
                 proxy.show ();
             } catch (IOError e) {
@@ -87,13 +74,7 @@ namespace IBus {
             }
         }
 
-        /**
-         * ibus_charmap_hide:
-         * @self: an #IBusCharmap
-         *
-         * Hide a character map.
-         */
-        public void hide () {
+        public override void hide () {
             try {
                 proxy.hide ();
             } catch (IOError e) {
@@ -101,18 +82,7 @@ namespace IBus {
             }
         }
 
-        /**
-         * ibus_charmap_set_cursor_location:
-         * @self: an #IBusCharmap
-         * @x: X coordinate of the cursor
-         * @y: Y coordinate of the cursor
-         * @w: width of the cursor
-         * @h: height of the cursor
-         *
-         * Tell the cursor location of the IBus input context to the
-         * charmap service.
-         */
-        public void set_cursor_location (int x, int y, int w, int h) {
+        public override void set_cursor_location (int x, int y, int w, int h) {
             try {
                 proxy.set_cursor_location (x, y, w, h);
             } catch (IOError e) {
