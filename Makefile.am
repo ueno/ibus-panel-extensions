@@ -37,6 +37,7 @@ DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
 EXTRA_DIST = \
 	autogen.sh \
 	@PACKAGE_NAME@.spec.in \
+	README.markdown \
 	$(NULL)
 
 noinst_DIST = \
