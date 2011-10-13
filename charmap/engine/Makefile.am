@@ -20,7 +20,7 @@ ibus_engine_charmap_VALAFLAGS =			\
 
 ibus_engine_charmap_CFLAGS =			\
 	$(IBUS_CFLAGS)				\
-	-I$(top_builddir)/common/ibus		\
+	-I$(top_builddir)/common		\
 	-I$(top_builddir)/charmap/ibus		\
 	-DPACKAGE_DATADIR=\"$(pkgdatadir)\"	\
 	-DLOCALEDIR=\"$(datadir)/locale\"	\

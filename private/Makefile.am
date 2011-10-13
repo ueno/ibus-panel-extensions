@@ -13,7 +13,7 @@ libibuspanelextensionsprivate_la_VALAFLAGS = \
 
 libibuspanelextensionsprivate_la_CFLAGS = \
 	-I$(top_builddir)/common/ibus \
-	-I$(top_srcdir)/common/ibus \
+	-I$(top_srcdir)/common \
 	$(LIBIBUSPANELEXTENSIONS_CFLAGS) \
 	$(GTK_CFLAGS)
 libibuspanelextensionsprivate_la_LIBADD = \

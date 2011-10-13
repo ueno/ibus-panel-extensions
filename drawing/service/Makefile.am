@@ -20,7 +20,7 @@ ibus_ui_drawing_gtk_VALAFLAGS =			\
 
 ibus_ui_drawing_gtk_CFLAGS =			\
 	$(GTK_CFLAGS) $(IBUS_CFLAGS)		\
-	-I$(top_builddir)/common/ibus		\
+	-I$(top_builddir)/common		\
 	-I$(top_builddir)/private		\
 	-DPACKAGE_DATADIR=\"$(pkgdatadir)\"	\
 	-DLOCALEDIR=\"$(datadir)/locale\"	\

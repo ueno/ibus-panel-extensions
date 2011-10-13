@@ -24,7 +24,7 @@ ibus_ui_charmap_gtk_CFLAGS =			\
 	$(GUCHARMAP_CFLAGS)			\
 	$(SQLITE_CFLAGS)			\
 	$(IBUS_CFLAGS)				\
-	-I$(top_builddir)/common/ibus		\
+	-I$(top_builddir)/common		\
 	-I$(top_builddir)/private		\
 	-DPACKAGE_DATADIR=\"$(pkgdatadir)\"	\
 	-DLOCALEDIR=\"$(datadir)/locale\"	\

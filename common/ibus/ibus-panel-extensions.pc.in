@@ -24,6 +24,6 @@ includedir=@includedir@
 Name: ibus-panel-extensions
 Description: A library to access IBus panel extension services
 Version: @VERSION@
-Requires: ibus-charmap ibus-virtkbd ibus-drawing
-Libs: -L${libdir} -libuscharmap -libusvirtkbd -libusdrawing -libuspanelextensions
+Requires: gobject-2.0
+Libs: -L${libdir} -libuspanelextensions
 Cflags: -I${includedir}/ibus-panel-extensions
