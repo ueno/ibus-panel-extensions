@@ -20,61 +20,42 @@ import dbus.mainloop.glib
 import gobject
 import ibus
 
-class Charmap(gobject.GObject):
-    __gtype_name__ = "PyIBusCharmap"
+class Virtkbd(gobject.GObject):
+    __gtype_name__ = "PyIBusVirtkbd"
     __gsignals__ = {
-        'character-activated': (
+        'text-activated': (
             gobject.SIGNAL_RUN_LAST,
             gobject.TYPE_NONE,
-            (gobject.TYPE_UCHAR))
+            (gobject.TYPE_STRING,))
         }
 
     def __init__(self, bus):
-        super(Charmap, self).__init__()
+        super(Virtkbd, self).__init__()
         self.__dbusconn = bus.get_dbusconn()
-        _charmap = self.__dbusconn.get_object("org.freedesktop.IBus.Charmap",
-                                              "/org/freedesktop/IBus/Charmap")
-        self.__charmap = dbus.Interface(_charmap,
+        _virtkbd = self.__dbusconn.get_object("org.freedesktop.IBus.Virtkbd",
+                                              "/org/freedesktop/IBus/Virtkbd")
+        self.__virtkbd = dbus.Interface(_virtkbd,
                                         dbus_interface="org.freedesktop.DBus")
-        self.__charmap.connect_to_signal("CharacterActivated",
-                                         self.__character_activated_cb)
+        self.__virtkbd.connect_to_signal("TextActivated",
+                                         self.__text_activated_cb)
 
-    def __character_activated_cb(self, *args):
+    def __text_activated_cb(self, *args):
         uc = args[0]
-        self.emit("character-activated", uc)
+        self.emit("text-activated", uc)
 
     def show(self):
-        self.__charmap.Show()
+        self.__virtkbd.Show()
 
     def hide(self):
-        self.__charmap.Hide()
+        self.__virtkbd.Hide()
 
     def set_cursor_location(self, x, y, w, h):
         x = dbus.Int32(x)
         y = dbus.Int32(y)
         w = dbus.Int32(w)
         h = dbus.Int32(h)
-        self.__charmap.SetCursorLocation(x, y, w, h)
+        self.__virtkbd.SetCursorLocation(x, y, w, h)
 
-    def move_cursor(self, step, count):
-        step = dbus.Int32(step)
-        count = dbus.Int32(step)
-        self.__charmap.MoveCursor(step, count)
-        
-    def select_character(self, uc):
-        uc = dbus.UInt32(uc)
-        self.__charmap.SelectCharacter(uc)
-
-    def activate_selected(self):
-        self.__charmap.ActivateSelected()
-
-    def popup_chapters(self):
-        self.__charmap.PopupChapters()
-
-    def start_search(self, name, max_matches):
-        name = dbus.String(name)
-        max_matches = dbus.UInt32(max_matches)
-        self.__charmap.StartSearch(name, max_matches)
-
-    def cancel_search(self):
-        self.__charmap.CancelSearch()
+    def set_keyboard(self, keyboard):
+        keyboard = dbus.String(keyboard)
+        self.__virtkbd.SetKeyboard(keyboard)

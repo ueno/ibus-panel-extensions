@@ -20,61 +20,49 @@ import dbus.mainloop.glib
 import gobject
 import ibus
 
-class Charmap(gobject.GObject):
-    __gtype_name__ = "PyIBusCharmap"
+class Drawing(gobject.GObject):
+    __gtype_name__ = "PyIBusDrawing"
     __gsignals__ = {
-        'character-activated': (
+        'stroke-added': (
             gobject.SIGNAL_RUN_LAST,
             gobject.TYPE_NONE,
-            (gobject.TYPE_UCHAR))
+            (gobject.TYPE_POINTER,
+             gobject.TYPE_INT)),
+        'stroke-removed': (
+            gobject.SIGNAL_RUN_LAST,
+            gobject.TYPE_NONE,
+            (gobject.TYPE_UINT,))
         }
 
     def __init__(self, bus):
-        super(Charmap, self).__init__()
+        super(Drawing, self).__init__()
         self.__dbusconn = bus.get_dbusconn()
-        _charmap = self.__dbusconn.get_object("org.freedesktop.IBus.Charmap",
-                                              "/org/freedesktop/IBus/Charmap")
-        self.__charmap = dbus.Interface(_charmap,
+        _drawing = self.__dbusconn.get_object("org.freedesktop.IBus.Drawing",
+                                              "/org/freedesktop/IBus/Drawing")
+        self.__drawing = dbus.Interface(_drawing,
                                         dbus_interface="org.freedesktop.DBus")
-        self.__charmap.connect_to_signal("CharacterActivated",
-                                         self.__character_activated_cb)
+        self.__drawing.connect_to_signal("StrokeAdded",
+                                         self.__stroke_added_cb)
+        self.__drawing.connect_to_signal("StrokeRemoved",
+                                         self.__stroke_removed_cb)
 
-    def __character_activated_cb(self, *args):
-        uc = args[0]
-        self.emit("character-activated", uc)
+    def __stroke_added_cb(self, *args):
+        # FIXME: self.emit("stroke-added", coordinates, len(coordinates))
+        pass
+
+    def __stroke_removed_cb(self, *args):
+        n_strokes = args[0]
+        self.emit("stroke-removed", n_strokes)
 
     def show(self):
-        self.__charmap.Show()
+        self.__drawing.Show()
 
     def hide(self):
-        self.__charmap.Hide()
+        self.__drawing.Hide()
 
     def set_cursor_location(self, x, y, w, h):
         x = dbus.Int32(x)
         y = dbus.Int32(y)
         w = dbus.Int32(w)
         h = dbus.Int32(h)
-        self.__charmap.SetCursorLocation(x, y, w, h)
-
-    def move_cursor(self, step, count):
-        step = dbus.Int32(step)
-        count = dbus.Int32(step)
-        self.__charmap.MoveCursor(step, count)
-        
-    def select_character(self, uc):
-        uc = dbus.UInt32(uc)
-        self.__charmap.SelectCharacter(uc)
-
-    def activate_selected(self):
-        self.__charmap.ActivateSelected()
-
-    def popup_chapters(self):
-        self.__charmap.PopupChapters()
-
-    def start_search(self, name, max_matches):
-        name = dbus.String(name)
-        max_matches = dbus.UInt32(max_matches)
-        self.__charmap.StartSearch(name, max_matches)
-
-    def cancel_search(self):
-        self.__charmap.CancelSearch()
+        self.__drawing.SetCursorLocation(x, y, w, h)

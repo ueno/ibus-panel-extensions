@@ -25,6 +25,9 @@ namespace IBusDrawing {
         public abstract void hide ();
         public abstract void set_cursor_location (int x, int y, int w, int h);
 
+        public signal void stroke_added (double[] coordinates);
+        public signal void stroke_removed (uint n_strokes);
+
         protected void register_drawing (DBusConnection conn) {
             try {
                 // start service and register it as dbus object

@@ -47,21 +47,11 @@ namespace IBusDrawing {
             register_drawing (conn);
 
             drawing_panel.stroke_added.connect ((coordinates) => {
-                    var path = bus.current_input_context ();
-                    if (path != null) {
-                        var context =
-                            IBus.InputContext.get_input_context (path, conn);
-                        context.process_hand_writing_event (coordinates);
-                    }
+                    stroke_added (coordinates);
                 });
 
             drawing_panel.stroke_removed.connect ((n_strokes) => {
-                    var path = bus.current_input_context ();
-                    if (path != null) {
-                        var context =
-                            IBus.InputContext.get_input_context (path, conn);
-                        context.cancel_hand_writing (n_strokes);
-                    }
+                    stroke_removed (n_strokes);
                 });
         }
 

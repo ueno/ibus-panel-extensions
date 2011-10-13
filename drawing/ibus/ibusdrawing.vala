@@ -23,6 +23,9 @@ namespace IBus {
         public abstract void show () throws IOError;
         public abstract void hide () throws IOError;
         public abstract void set_cursor_location (int x, int y, int w, int h) throws IOError;
+
+        public signal void stroke_added (double[] coordinates);
+        public signal void stroke_removed (uint n_strokes);
     }
 
     /**
@@ -108,5 +111,27 @@ namespace IBus {
                 warning ("Error: %s", e.message);
             }
         }
+
+        /**
+         * IBusDrawing::stroke-added
+         * @ibusdrawing: an #IBusDrawing
+         * @coordinates: an array of double (0.0 to 1.0) which
+         * represents a stroke (i.e. [x1, y1, x2, y2, x3, y3, ...]).
+         *
+         * The ::stroke-added signal is emitted each time a stroke is
+         * added on @ibusdrawing.
+         */
+        public signal void stroke_added (double[] coordinates);
+
+        /**
+         * IBusDrawing::stroke-removed
+         * @ibusdrawing: an #IBusDrawing
+         * @n_strokes: the number of strokes to be removed.  0 is
+         * passed when all the strokes are removed.
+         *
+         * The ::stroke-removed signal is emitted each time a stroke is
+         * removed from @ibusdrawing.
+         */
+        public signal void stroke_removed (uint n_strokes);
     }
 }
