@@ -61,7 +61,7 @@ namespace IBusVirtkbd {
                     "org.freedesktop.DBus.Properties",
                     "PropertiesChanged",
                     new Variant ("(sa{sv}as)",
-                                 "org.freedesktop.IBus.Charmap",
+                                 "org.freedesktop.IBus.Virtkbd",
                                  changed,
                                  invalidated));
             } catch (Error e) {
