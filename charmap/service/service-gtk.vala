@@ -33,8 +33,12 @@ namespace IBusCharmap {
         internal static IBus.Config config;
 
         public GtkService (DBusConnection conn) {
-            window = new Gtk.Window (Gtk.WindowType.POPUP);
+            window = new Gtk.Window (Gtk.WindowType.TOPLEVEL);
             window.set_size_request (INITIAL_WIDTH, INITIAL_HEIGHT);
+            window.set_can_focus (false);
+            window.set_accept_focus (false);
+            window.set_keep_above (true);
+            window.set_title (_("Character Map"));
             charmap_panel = new CharmapPanel (config);
             charmap_panel.character_activated.connect ((uc) => {
                     character_activated (uc);
@@ -54,6 +58,7 @@ namespace IBusCharmap {
             // that the toplevel window is hidden - this is necessary
             // to clear zoom window (see CharmapPanel#on_hide()).
             window.hide.connect (() => charmap_panel.hide ());
+            window.delete_event.connect (window.hide_on_delete);
 
             window.notify["visible"].connect ((s, p) => {
                     send_visible_changed (conn);

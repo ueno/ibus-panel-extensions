@@ -32,11 +32,15 @@ namespace IBusDrawing {
         internal static IBus.Config config;
 
         public GtkService (DBusConnection conn) {
-            window = new Gtk.Window (Gtk.WindowType.POPUP);
+            window = new Gtk.Window (Gtk.WindowType.TOPLEVEL);
             window.set_size_request (INITIAL_WIDTH, INITIAL_HEIGHT);
+            window.set_can_focus (false);
+            window.set_accept_focus (false);
+            window.set_keep_above (true);
+            window.set_title (_("Drawing Pad"));
             drawing_panel = new DrawingPanel (config);
-
             window.add (drawing_panel);
+            window.delete_event.connect (window.hide_on_delete);
 
             window.notify["visible"].connect ((s, p) => {
                     send_visible_changed (conn);

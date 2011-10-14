@@ -27,12 +27,17 @@ namespace IBusVirtkbd {
         internal static IBus.Config config;
 
         public GtkService (DBusConnection conn) {
-            window = new Gtk.Window (Gtk.WindowType.POPUP);
+            window = new Gtk.Window (Gtk.WindowType.TOPLEVEL);
+            window.set_can_focus (false);
+            window.set_accept_focus (false);
+            window.set_keep_above (true);
+            window.set_title (_("Virtual Keyboard"));
             virtkbd_panel = new VirtkbdPanel (config);
             virtkbd_panel.text_activated.connect ((text) => {
                     text_activated (text);
                 });
             window.add (virtkbd_panel);
+            window.delete_event.connect (window.hide_on_delete);
 
             window.notify["visible"].connect ((s, p) => {
                     send_visible_changed (conn);

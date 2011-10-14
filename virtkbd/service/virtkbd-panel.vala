@@ -22,8 +22,8 @@ namespace IBusVirtkbd {
     private const string DEFAULT_KEYBOARD = "us";
 
     class VirtkbdPanel : Gtk.Box {
-        static const int INITIAL_WIDTH = 320;
-        static const int INITIAL_HEIGHT = 240;
+        static const int INITIAL_WIDTH = 640;
+        static const int INITIAL_HEIGHT = 430;
 
         Gtk.Box keyboard_box;
         Gtk.Widget keyboard_widget;
