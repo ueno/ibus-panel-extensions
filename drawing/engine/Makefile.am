@@ -19,8 +19,8 @@ ibus_engine_drawing_VALAFLAGS =			\
 
 ibus_engine_drawing_CFLAGS =			\
 	$(IBUS_CFLAGS)				\
-	-I$(top_builddir)/common		\
-	-I$(top_builddir)/drawing/ibus		\
+	-I$(top_srcdir)/common			\
+	-I$(top_srcdir)/drawing/ibus		\
 	-DPACKAGE_DATADIR=\"$(pkgdatadir)\"	\
 	-DLOCALEDIR=\"$(datadir)/locale\"	\
 	-DLIBEXECDIR=\"$(libexecdir)\"

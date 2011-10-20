@@ -18,8 +18,8 @@ ibus_engine_virtkbd_VALAFLAGS =			\
 	$(VALAFLAGS)
 
 ibus_engine_virtkbd_CFLAGS =			\
-	-I$(top_builddir)/common		\
-	-I$(top_builddir)/virtkbd/ibus		\
+	-I$(top_srcdir)/common			\
+	-I$(top_srcdir)/virtkbd/ibus		\
 	$(IBUS_CFLAGS)				\
 	-DPACKAGE_DATADIR=\"$(pkgdatadir)\"	\
 	-DLOCALEDIR=\"$(datadir)/locale\"	\

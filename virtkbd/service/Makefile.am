@@ -22,8 +22,8 @@ ibus_ui_virtkbd_gtk_VALAFLAGS =			\
 	$(VALAFLAGS)
 
 ibus_ui_virtkbd_gtk_CFLAGS =				\
-	-I$(top_builddir)/common			\
-	-I$(top_builddir)/private			\
+	-I$(top_srcdir)/common				\
+	-I$(top_srcdir)/private				\
 	$(GEE_CFLAGS)					\
 	$(EEKGTK_CFLAGS)				\
 	$(SQLITE_CFLAGS)				\

@@ -14,7 +14,7 @@ libibuscharmap_la_VALAFLAGS =			\
 
 libibuscharmap_la_CFLAGS =			\
 	$(LIBIBUSPANELEXTENSIONS_CFLAGS)	\
-	-I$(top_builddir)/common
+	-I$(top_srcdir)/common
 
 libibuscharmap_la_LIBADD =			\
 	$(LIBIBUSPANELEXTENSIONS_LIBS)		\

@@ -1,2 +1,2 @@
-nobase_pkgpython_PYTHON = ibus/charmap.py
+nobase_pkgpython_PYTHON = ibus/virtkbd.py
 

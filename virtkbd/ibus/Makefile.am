@@ -14,7 +14,7 @@ libibusvirtkbd_la_VALAFLAGS =			\
 
 libibusvirtkbd_la_CFLAGS =			\
 	$(LIBIBUSPANELEXTENSIONS_CFLAGS)	\
-	-I$(top_builddir)/common
+	-I$(top_srcdir)/common
 
 libibusvirtkbd_la_LIBADD =			\
 	$(LIBIBUSPANELEXTENSIONS_LIBS)		\

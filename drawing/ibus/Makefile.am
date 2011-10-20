@@ -15,7 +15,7 @@ libibusdrawing_la_VALAFLAGS =			\
 
 libibusdrawing_la_CFLAGS =			\
 	$(LIBIBUSPANELEXTENSIONS_CFLAGS)	\
-	-I$(top_builddir)/common
+	-I$(top_srcdir)/common
 
 libibusdrawing_la_LIBADD =			\
 	$(LIBIBUSPANELEXTENSIONS_LIBS)		\
