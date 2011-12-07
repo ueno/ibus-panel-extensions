@@ -1,32 +1,32 @@
-// -*- mode: vala; indent-tabs-mode: nil -*-
-// Copyright (C) 2011  Daiki Ueno
-// Copyright (C) 2011  Red Hat, Inc.
-
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-// 02110-1301, USA.
-
+/*
+ * Copyright (C) 2011  Daiki Ueno
+ * Copyright (C) 2011  Red Hat, Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ */
 namespace IBusCharmap {
     class Engine : IBus.Engine {
         string select_chapter_shortcut;
         string commit_character_shortcut;
         uint max_matches;
 
-        private IBus.PropList prop_list;
+        IBus.PropList prop_list;
 
-        private StringBuilder preedit = new StringBuilder ();
-        private IBus.Charmap charmap;
+        StringBuilder preedit = new StringBuilder ();
+        IBus.Charmap charmap;
         internal static IBus.Config config;
 
         struct MoveBinding {
@@ -36,7 +36,7 @@ namespace IBusCharmap {
             int count;
         }
 
-        private const MoveBinding[] move_bindings = {
+        const MoveBinding[] move_bindings = {
             { IBus.Up, 0, IBus.MovementStep.DISPLAY_LINES, -1 },
             { IBus.KP_Up, 0, IBus.MovementStep.DISPLAY_LINES, -1 },
             { IBus.Down, 0, IBus.MovementStep.DISPLAY_LINES, 1 },
@@ -85,13 +85,13 @@ namespace IBusCharmap {
                                          "ibus-setup-charmap"));
         }
 
-        private static bool isascii (uint keyval) {
+        static bool isascii (uint keyval) {
             return 0x20 <= keyval && keyval <= 0x7E;
         }
 
-        private bool parse_keystr (string keystr,
-                                   out uint keyval,
-                                   out uint state)
+        bool parse_keystr (string keystr,
+                           out uint keyval,
+                           out uint state)
         {
             var buffer = new StringBuilder (keystr);
             state = 0;
@@ -111,7 +111,7 @@ namespace IBusCharmap {
             return true;
         }
 
-        private void move_cursor (IBus.MovementStep step, int count) {
+        void move_cursor (IBus.MovementStep step, int count) {
             charmap.move_cursor (step, count);
         }
 
@@ -194,7 +194,7 @@ namespace IBusCharmap {
             base.destroy ();
         }
 
-        private void on_character_activated (unichar uc) {
+        void on_character_activated (unichar uc) {
             if (uc > 0)
                 commit_text (new IBus.Text.from_string (uc.to_string ()));
         }

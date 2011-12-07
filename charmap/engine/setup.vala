@@ -1,33 +1,33 @@
-// -*- mode: vala; indent-tabs-mode: nil -*-
-// Copyright (C) 2011  Daiki Ueno
-// Copyright (C) 2011  Red Hat, Inc.
-
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-// 02110-1301, USA.
-
+/*
+ * Copyright (C) 2011  Daiki Ueno
+ * Copyright (C) 2011  Red Hat, Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ */
 namespace IBusCharmap {
     class Setup : Object {
-        private Gtk.Dialog dialog;
-        private Gtk.CheckButton use_system_font_checkbutton;
-        private Gtk.FontButton fontbutton;
-        private Gtk.SpinButton max_matches_spinbutton;
-        private Gtk.Entry select_chapter_entry;
-        private Gtk.Button select_chapter_button;
-        private Gtk.Entry commit_character_entry;
-        private Gtk.Button commit_character_button;
-        private IBus.Config config;
+        Gtk.Dialog dialog;
+        Gtk.CheckButton use_system_font_checkbutton;
+        Gtk.FontButton fontbutton;
+        Gtk.SpinButton max_matches_spinbutton;
+        Gtk.Entry select_chapter_entry;
+        Gtk.Button select_chapter_button;
+        Gtk.Entry commit_character_entry;
+        Gtk.Button commit_character_button;
+        IBus.Config config;
 
         public bool use_system_font {
             get {
@@ -157,7 +157,7 @@ namespace IBusCharmap {
             }
         }
 
-        private void save_settings () {
+        void save_settings () {
             use_system_font = use_system_font_checkbutton.active;
             font = fontbutton.font_name;
             max_matches = (int)max_matches_spinbutton.value;

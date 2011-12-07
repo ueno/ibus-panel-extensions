@@ -1,27 +1,27 @@
-// -*- mode: vala; indent-tabs-mode: nil -*-
-// Copyright (C) 2011  Daiki Ueno
-// Copyright (C) 2011  Red Hat, Inc.
-
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-// 02110-1301, USA.
-
+/*
+ * Copyright (C) 2011  Daiki Ueno
+ * Copyright (C) 2011  Red Hat, Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ */
 namespace IBusCharmap {
-    private const string CHARMAP_DOMAIN = "charmap";
+    const string CHARMAP_DOMAIN = "charmap";
 
     class ChapterCellRenderer : Gtk.CellRendererText {
-        private string _untranslated;
+        string _untranslated;
         public string untranslated {
             get {
                 return _untranslated;
@@ -34,12 +34,12 @@ namespace IBusCharmap {
     }
 
     class CharmapPanel : Gtk.Box, IBus.Selectable {
-        private Gtk.ComboBox chapters;
-        private Gucharmap.Chartable chartable;
-        private Gtk.Statusbar statusbar;
-        private uint statusbar_context_id;
+        Gtk.ComboBox chapters;
+        Gucharmap.Chartable chartable;
+        Gtk.Statusbar statusbar;
+        uint statusbar_context_id;
 
-        private bool _use_system_font;
+        bool _use_system_font;
         public bool use_system_font {
             get {
                 return _use_system_font;
@@ -50,7 +50,7 @@ namespace IBusCharmap {
             }
         }
 
-        private string _font;
+        string _font;
         public string font {
             get {
                 return _font;
@@ -84,7 +84,7 @@ namespace IBusCharmap {
             }
         }
 
-        private void on_chapter_changed (Gtk.ComboBox combo) {
+        void on_chapter_changed (Gtk.ComboBox combo) {
             Gtk.TreeIter iter;
             if (combo.get_active_iter (out iter)) {
                 var model = (Gucharmap.ChaptersModel)chapters.get_model ();
@@ -93,7 +93,7 @@ namespace IBusCharmap {
             }
         }
 
-        private void on_hide (Gtk.Widget widget) {
+        void on_hide (Gtk.Widget widget) {
             // Toggling zoom enabled will cause hiding the zoom window.
             if (chartable.get_zoom_enabled ()) {
                 chartable.set_zoom_enabled (false);
@@ -101,7 +101,7 @@ namespace IBusCharmap {
             }
         }
 
-        private void on_chartable_notify_active_character (Object source,
+        void on_chartable_notify_active_character (Object source,
                                                            ParamSpec param)
         {
             statusbar.remove_all (statusbar_context_id);
@@ -110,7 +110,7 @@ namespace IBusCharmap {
             statusbar.push (statusbar_context_id, "U+%X %s".printf (uc, name));
         }
 
-        private void set_chartable_font () {
+        void set_chartable_font () {
             Pango.FontDescription font_desc = null;
             if (use_system_font) {
                 // Use normal size GTK font

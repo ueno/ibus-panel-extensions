@@ -24,7 +24,7 @@ Dependencies
 Note that it won't work with older IBus, because IBus gets automatic
 service activation since 1.4.0.
 
-* Vala 0.12
+* Vala 0.12 or later
 
 For charmap:
 
@@ -48,3 +48,7 @@ $ make
 $ sudo make install
 </pre>
 
+License
+-------------------------------
+Libraries (client libraries and Python binding) are licensed under LGPLv2+.
+Programs (services, engines, and misc tools) are licensed under GPLv2+.

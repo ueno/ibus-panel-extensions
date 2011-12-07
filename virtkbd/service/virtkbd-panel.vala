@@ -1,25 +1,25 @@
-// -*- mode: vala; indent-tabs-mode: nil -*-
-// Copyright (C) 2011  Daiki Ueno
-// Copyright (C) 2011  Red Hat, Inc.
-
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-// 02110-1301, USA.
-
+/*
+ * Copyright (C) 2011  Daiki Ueno
+ * Copyright (C) 2011  Red Hat, Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ */
 namespace IBusVirtkbd {
-    private const string VIRTKBD_DOMAIN = "virtkbd";
-    private const string DEFAULT_KEYBOARD = "us";
+    const string VIRTKBD_DOMAIN = "virtkbd";
+    const string DEFAULT_KEYBOARD = "us";
 
     class VirtkbdPanel : Gtk.Box {
         static const int INITIAL_WIDTH = 640;
@@ -32,7 +32,7 @@ namespace IBusVirtkbd {
 
         public signal void text_activated (string text);
 
-        private void on_key_released (Eek.Keyboard keyboard, Eek.Key key) {
+        void on_key_released (Eek.Keyboard keyboard, Eek.Key key) {
             var symbol = key.get_symbol_with_fallback (0, 0);
             if (symbol is Eek.Keysym) {
                 var keyval = ((Eek.Keysym)symbol).get_xkeysym ();

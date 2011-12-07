@@ -1,25 +1,25 @@
-// -*- mode: vala; indent-tabs-mode: nil -*-
-// Copyright (C) 2011  Daiki Ueno
-// Copyright (C) 2011  Red Hat, Inc.
-
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License
-// as published by the Free Software Foundation; either version 2
-// of the License, or (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-// 02110-1301, USA.
-
+/*
+ * Copyright (C) 2011  Daiki Ueno
+ * Copyright (C) 2011  Red Hat, Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ */
 namespace IBusCharmap {
     class CharacterRenderer : Gtk.CellRendererText {
-        private unichar _codepoint;
+        unichar _codepoint;
         public unichar codepoint {
             get {
                 return _codepoint;
@@ -32,11 +32,11 @@ namespace IBusCharmap {
     }
 
     class SearchPanel : Gtk.Box, IBus.Selectable {
-        private Gtk.Entry entry;
-        private Gtk.TreeView matches;
+        Gtk.Entry entry;
+        Gtk.TreeView matches;
 
-        private static Sqlite.Database database;
-        private uint idle_search_id = 0;
+        static Sqlite.Database database;
+        uint idle_search_id = 0;
 
         public signal void activate_character (unichar uc);
 
@@ -82,7 +82,7 @@ namespace IBusCharmap {
             }
         }
 
-        private void on_row_activated (Gtk.TreePath path,
+        void on_row_activated (Gtk.TreePath path,
                                        Gtk.TreeViewColumn column)
         {
             var store = matches.get_model ();
@@ -93,7 +93,7 @@ namespace IBusCharmap {
             character_activated (uc);
         }
 
-        private bool idle_search (uint max_matches) {
+        bool idle_search (uint max_matches) {
             var text = entry.get_text ();
             var store = (Gtk.ListStore)matches.get_model ();
             
