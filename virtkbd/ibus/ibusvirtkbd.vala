@@ -28,15 +28,10 @@ namespace IBus {
     }
 
     /**
-     * SECTION:ibusvirtkbd
-     * @short_description: Virtual keyboard support library for IBus
-     *
-     * The #IBusVirtkbd class is a proxy to access the virtual keyboard service.
+     * Proxy to access the virtual keyboard service.
      */
     public class Virtkbd : IBus.PanelExtension {
         /**
-         * IBusVirtkbd:keyboard-type:
-         *
          * Keyboard type to be displayed.
          */
         public string keyboard_type { get; set; }
@@ -44,12 +39,11 @@ namespace IBus {
         IVirtkbd proxy;
 
         /**
-         * ibus_virtkbd_new:
-         * @conn: a #DBusConnection
-         * @error: an #GError
+         * Create a virtkbd instance.
          *
-         * Create an #IBusVirtkbd instance.
-         * Returns: an #IBusVirtkbd
+         * @param conn a DBusConnection
+         *
+         * @return a new Virtkbd
          */
         public Virtkbd (DBusConnection conn) throws IOError {
             proxy = conn.get_proxy_sync ("org.freedesktop.IBus.Virtkbd",
@@ -67,6 +61,9 @@ namespace IBus {
             hide ();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             try {
                 proxy.show ();
@@ -75,6 +72,9 @@ namespace IBus {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void hide () {
             try {
                 proxy.hide ();
@@ -83,6 +83,9 @@ namespace IBus {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void set_cursor_location (int x, int y, int w, int h) {
             try {
                 proxy.set_cursor_location (x, y, w, h);
@@ -92,11 +95,9 @@ namespace IBus {
         }
 
         /**
-         * ibus_virtkbd_set_keyboard:
-         * @self: an #IBusVirtkbd
-         * @keyboard: name of keyboard
+         * Set the keyboard type.
          *
-         * Set the keyboard type to @keyboard.
+         * @param keyboard name of keyboard
          */
         public void set_keyboard (string keyboard) {
             try {
@@ -107,12 +108,9 @@ namespace IBus {
         }
 
         /**
-         * IBusVirtkbd::text-activated:
-         * @ibusvirtkbd: an #IBusVirtkbd
-         * @text: a text
+         * Signal emitted each time a symbol text is activated.
          *
-         * The ::text-activated signal is emitted each time @text is
-         * activated on @ibusvirtkbd by clicking on the character map.
+         * @param text a symbol text
          */
         public signal void text_activated (string text);
     }

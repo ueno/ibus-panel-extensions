@@ -27,8 +27,11 @@ SUBDIRS = \
 	drawing \
 	m4 \
 	po \
-	docs \
 	$(NULL)
+
+if HAVE_VALADOC
+SUBDIRS += docs
+endif
 
 ACLOCAL_AMFLAGS = -I m4
 

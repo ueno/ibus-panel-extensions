@@ -29,15 +29,10 @@ namespace IBus {
     }
 
     /**
-     * SECTION:ibusdrawing
-     * @short_description: drawing pad support library for IBus, for hand-writing
-     *
-     * The #IBusDrawing class is a proxy to access the handwriting pad service.
+     * Proxy to access the handwriting pad service.
      */
     public class Drawing : IBus.PanelExtension {
         /**
-         * IBusDrawing:visible:
-         *
          * Whether the drawing window is visible.
          */
         public bool visible { get; private set; }
@@ -45,12 +40,11 @@ namespace IBus {
         IDrawing proxy;
 
         /**
-         * ibus_drawing_new:
-         * @conn: a #DBusConnection
-         * @error: an #GError
+         * Create a drawing pad instance.
          *
-         * Create an #IBusDrawing instance.
-         * Returns: an #IBusDrawing
+         * @param conn a DBusConnection
+         *
+         * @return a new Drawing instance
          */
         public Drawing (DBusConnection conn) throws IOError {
             proxy = conn.get_proxy_sync ("org.freedesktop.IBus.Drawing",
@@ -65,6 +59,9 @@ namespace IBus {
             hide ();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             try {
                 proxy.show ();
@@ -73,6 +70,9 @@ namespace IBus {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void hide () {
             try {
                 proxy.hide ();
@@ -81,6 +81,9 @@ namespace IBus {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void set_cursor_location (int x, int y, int w, int h) {
             try {
                 proxy.set_cursor_location (x, y, w, h);
@@ -90,24 +93,18 @@ namespace IBus {
         }
 
         /**
-         * IBusDrawing::stroke-added
-         * @ibusdrawing: an #IBusDrawing
-         * @coordinates: an array of double (0.0 to 1.0) which
-         * represents a stroke (i.e. [x1, y1, x2, y2, x3, y3, ...]).
+         * Signal emitted each time a stroke is added.
          *
-         * The ::stroke-added signal is emitted each time a stroke is
-         * added on @ibusdrawing.
+         * @param coordinates an array of double (0.0 to 1.0) which
+         * represents a stroke (i.e. [x1, y1, x2, y2, x3, y3, ...]).
          */
         public signal void stroke_added (double[] coordinates);
 
         /**
-         * IBusDrawing::stroke-removed
-         * @ibusdrawing: an #IBusDrawing
-         * @n_strokes: the number of strokes to be removed.  0 is
-         * passed when all the strokes are removed.
+         * Signal emitted each time a stroke is removed.
          *
-         * The ::stroke-removed signal is emitted each time a stroke is
-         * removed from @ibusdrawing.
+         * @param n_strokes the number of strokes to be removed.  0 is
+         * passed when all the strokes are removed.
          */
         public signal void stroke_removed (uint n_strokes);
     }

@@ -34,21 +34,17 @@ namespace IBus {
     }
 
     /**
-     * SECTION:ibuscharmap
-     * @short_description: Unicode character map support library for IBus
-     *
-     * The #IBusCharmap class is a proxy to access the character map service.
+     * Proxy to access the character map service.
      */
     public class Charmap : IBus.PanelExtension {
         ICharmap proxy;
 
         /**
-         * ibus_charmap_new:
-         * @conn: a #DBusConnection
-         * @error: an #GError
+         * Create a new charmap proxy
          *
-         * Create an #IBusCharmap instance.
-         * Returns: an #IBusCharmap
+         * @param conn a DBusConnection
+         *
+         * @return a new Charmap
          */
         public Charmap (DBusConnection conn) throws IOError {
             proxy = conn.get_proxy_sync ("org.freedesktop.IBus.Charmap",
@@ -66,6 +62,9 @@ namespace IBus {
             hide ();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             try {
                 proxy.show ();
@@ -74,6 +73,9 @@ namespace IBus {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void hide () {
             try {
                 proxy.hide ();
@@ -82,6 +84,9 @@ namespace IBus {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void set_cursor_location (int x, int y, int w, int h) {
             try {
                 proxy.set_cursor_location (x, y, w, h);
@@ -91,12 +96,10 @@ namespace IBus {
         }
 
         /**
-         * ibus_charmap_move_cursor:
-         * @self: an #IBusCharmap
-         * @step: an #IBusMovementStep
-         * @count: amount of the movement
-         *
          * Move the cursor on the charmap window.
+         *
+         * @param step a MovementStep
+         * @param count amount of the movement
          */
         public void move_cursor (IBus.MovementStep step, int count) {
             try {
@@ -107,11 +110,9 @@ namespace IBus {
         }
 
         /**
-         * ibus_charmap_select_character:
-         * @self: an #IBusCharmap
-         * @uc: an Unicode character
-         *
          * Select a character cell on the character map.
+         *
+         * @param uc an Unicode character
          */
         public void select_character (unichar uc) {
             try {
@@ -122,9 +123,6 @@ namespace IBus {
         }
 
         /**
-         * ibus_charmap_activate_selected:
-         * @self: an #IBusCharmap
-         *
          * Activate selected character (if any).
          */
         public void activate_selected () {
@@ -136,9 +134,6 @@ namespace IBus {
         }
 
         /**
-         * ibus_charmap_popup_chapters:
-         * @self: an #IBusCharmap
-         *
          * Pull down the chapters menu.
          */
         public void popup_chapters () {
@@ -150,12 +145,10 @@ namespace IBus {
         }
 
         /**
-         * ibus_charmap_start_search:
-         * @self: an #IBusCharmap
-         * @name: a substring of Unicode character name
-         * @max_matches: maximum number of matches
-         *
          * Start search by a Unicode character name.
+         *
+         * @param name a substring of Unicode character name
+         * @param max_matches maximum number of matches
          */
         public void start_search (string name, uint max_matches) {
             try {
@@ -166,9 +159,6 @@ namespace IBus {
         }
 
         /**
-         * ibus_charmap_cancel_search:
-         * @self: an #IBusCharmap
-         *
          * Cancel search in progress.
          */
         public void cancel_search () {
@@ -180,14 +170,10 @@ namespace IBus {
         }
 
         /**
-         * IBusCharmap::character-activated:
-         * @ibuscharmap: an #IBusCharmap
-         * @uc: a Unicode character
+         * Signal emitted each time a character is activated on
+         * charmap.
          *
-         * The ::character-activated signal is emitted each time @uc
-         * is activated on @ibuscharmap either by
-         * ibus_charmap_activate_selected() or by clicking on the
-         * character map.
+         * @param uc a Unicode character
          */
         public signal void character_activated (unichar uc);
     }
